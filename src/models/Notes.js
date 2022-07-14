@@ -3,21 +3,26 @@ const sequelize = require('../database/databaseConnection');
 
 
 const noteModel = sequelize.define('notes', {
-    id: {
-        type: Sequelize.INTEGER,
+    idNote: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         unique: true
     },
     title: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     content: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
+    isArchived: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    }
 });
 
 module.exports = noteModel;

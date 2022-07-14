@@ -1,9 +1,11 @@
 require('dotenv').config();
+require('./src/database/associations'); 
 
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const sequelize = require('./src/database/databaseConnection');
+
 
 
 app.set('port', process.env.PORT || 5000);
@@ -14,12 +16,13 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //conexion a la base de datos
-sequelize.authenticate()
+/* sequelize.authenticate()
     .then(() => {
         console.log('Se conectó a la base de datos 🥵');
     }).catch(err => {
         console.log(`error al conectarse a la base de datos 😢 ${err.meesage}`);
     });
+ */
 
 //routes
 app.use('/api/auth', require('./src/routes/auth'));
@@ -29,4 +32,12 @@ app.use('/api/category', require('./src/routes/category'));
 
 app.listen(app.get('port'), () => {
     console.log(`Server running on port ${app.get('port')}`);
+    sequelize.sync({ force: true })
+        .then(() => {
+            console.log('Se conectó la base de datos');
+        })
+        .catch(err => {
+            console.log(`Error al conectarse a la base de datos ${err.message}`);
+        })
+
 }); 
