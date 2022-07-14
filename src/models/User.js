@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../database/databaseConnection');
 
 const userModel = sequelize.define('user', {
@@ -8,20 +8,20 @@ const userModel = sequelize.define('user', {
         autoIncrement: true,
         allowNull: false,
         unique: true
-    }, 
+    },
     name: {
         type: Sequelize.STRING,
         allowNull: false,
-    }, 
+    },
     password: {
         type: Sequelize.STRING,
         allowNull: false,
-    }, 
+    },
     email: {
         type: Sequelize.STRING,
         allowNull: false,
     }
-}); 
+});
 
 sequelize.sync();
 module.exports = userModel;
