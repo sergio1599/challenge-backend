@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/notes', require('./src/routes/notes'));
+app.use('/api/category', require('./src/routes/category'));
 
 
 app.listen(app.get('port'), () => {
