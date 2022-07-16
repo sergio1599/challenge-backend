@@ -205,6 +205,31 @@ const findNotesArchived = async (req, res) => {
     }
 };
 
+const findNotesUnArchived = async (req, res) => {
+    try {
+        const notes = await noteModel.findAll({
+            where: {
+                isArchived: false
+            }
+        });
+        if (notes.length === 0)
+            return res.status(204).json({
+                success: false,
+                message: 'No hay notas archivadas',
+            });
+        return res.status(200).json({
+            success: true,
+            data: notes
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error al obtener las notas archivadas',
+        });
+    }
+};
+
 const findNotesCategory = async (req, res) => { };
 
 
@@ -218,4 +243,5 @@ module.exports = {
     changeNotesToUnarchived,
     findNotesCategory,
     findNotesArchived,
+    findNotesUnArchived,
 }

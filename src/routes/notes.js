@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { findNotes, findOnlyNote, createNote, deleteNote, updateNote, changeNotesToArchived, changeNotesToUnarchived, findNotesCategory, findNotesArchived } = require('../controller/notes');
+const { findNotes, findOnlyNote, createNote, deleteNote, updateNote, changeNotesToArchived, changeNotesToUnarchived, findNotesCategory, findNotesArchived, findNotesUnArchived } = require('../controller/notes');
 const router = Router();
 
 router.get('/', findNotes);
@@ -11,6 +11,7 @@ router.patch('/change-archived/:id', changeNotesToArchived);
 router.patch('/change-unarchived/:id', changeNotesToUnarchived);
 router.get('/data/category', findNotesCategory);
 router.get('/data/archived', findNotesArchived);
+router.get('/data/unarchived', findNotesUnArchived);
 
 
 
